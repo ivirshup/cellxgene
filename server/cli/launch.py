@@ -108,7 +108,7 @@ def launch(
         title = file_parts[0]
 
     # Setup app
-    cellxgene_url = f"http://{host}:{port}"
+    cellxgene_url = f"https://{host}:{port}"
 
     # Import Flask app
     from server.app.app import app
