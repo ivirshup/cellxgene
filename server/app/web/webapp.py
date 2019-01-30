@@ -7,7 +7,7 @@ bp = Blueprint("webapp", __name__, template_folder="templates")
 
 @bp.route("/")
 def index():
-    url_base = request.url_root + "api/"
+    url_base = request.base_url + "api/"
     dataset_title = current_app.config["DATASET_TITLE"]
     return render_template("index.html", prefix=url_base, datasetTitle=dataset_title)
 
@@ -15,7 +15,9 @@ def index():
 # renders swagger documentation
 @bp.route("/swagger")
 def swag():
-    return render_template("swagger.html")
+    prefix = request.base_url
+    prefix = prefix[:prefix.rfind("/swagger")]
+    return render_template("swagger.html", prefix=prefix)
 
 
 # renders swagger documentation
